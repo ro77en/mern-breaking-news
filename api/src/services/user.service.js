@@ -6,8 +6,11 @@ const getAll = () => User.find();
 
 const getById = (id) => User.findById(id);
 
+const getByEmail = (email) => User.findOne({ email });
+
 module.exports = {
   create,
   getAll,
   getById,
+  getByEmail,
 };

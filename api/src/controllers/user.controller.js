@@ -8,10 +8,15 @@ const createUser = async (req, res) => {
     res.status(400).send({ message: "Submit all fields for signin up" });
   }
 
+  const existingUser = await userService.getByEmail(email);
+  if (existingUser) {
+    return res.status(409).send("Email already registered");
+  }
+
   const user = await userService.create(req.body);
 
   if (!user) {
-    return res.status(400).send({ message: "Error creating User" });
+    return res.status(500).send({ message: "Error creating User" });
   }
 
   res.status(201).send({
