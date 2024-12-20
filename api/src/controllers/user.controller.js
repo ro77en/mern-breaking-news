@@ -1,15 +1,24 @@
-const create = (req, res) => {
-  const { name, userName, email, password, avatar, background } = req.body;
+const userService = require("../services/user.service");
 
-  if (!name || !userName || !email || !password || !avatar || !background) {
+const createUser = async (req, res) => {
+  const { name, username, email, password, avatar, background } = req.body;
+
+  if (!name || !username || !email || !password || !avatar || !background) {
     res.status(400).send({ message: "Submit all fields for signin up" });
+  }
+
+  const user = await userService.create(req.body);
+
+  if (!user) {
+    return res.status(400).send({ message: "Error creating User" });
   }
 
   res.status(201).send({
     message: "User created successfuly!",
     user: {
+      id: user._id,
       name,
-      userName,
+      username,
       email,
       avatar,
       background,
@@ -17,4 +26,4 @@ const create = (req, res) => {
   });
 };
 
-module.exports = { create };
+module.exports = { createUser };
