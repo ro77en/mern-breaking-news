@@ -7,4 +7,6 @@ route.get('/:id', userController.getUserById);
 
 route.post("/", userController.createUser);
 
+route.patch('/:id', userController.updateUser);
+
 module.exports = route;
