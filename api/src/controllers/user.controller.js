@@ -1,4 +1,5 @@
 const userService = require("../services/user.service");
+const mongoose = require("mongoose");
 
 const createUser = async (req, res) => {
   const { name, username, email, password, avatar, background } = req.body;
@@ -26,4 +27,34 @@ const createUser = async (req, res) => {
   });
 };
 
-module.exports = { createUser };
+const getAllUsers = async (req, res) => {
+  const users = await userService.getAll();
+
+  if (users.length === 0) {
+    return res.status(400).send({
+      message: "No users found",
+    });
+  }
+
+  res.status(200).send(users);
+};
+
+const getUserById = async (req, res) => {
+  const id = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({ message: "Invalid ID" });
+  }
+
+  const user = await userService.getById(id);
+
+  if (!user) {
+    return res.status(400).send({
+      message: "User not found",
+    });
+  }
+
+  res.status(200).send(user);
+};
+
+module.exports = { createUser, getAllUsers, getUserById };
