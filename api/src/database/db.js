@@ -1,5 +1,7 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+dotenv.config();
 
 const connectDatabase = () => {
   console.log("connecting database...");
@@ -12,4 +14,4 @@ const connectDatabase = () => {
     .catch((e) => console.log("error connecting database: ", e));
 };
 
-module.exports = connectDatabase;
+export default connectDatabase;
