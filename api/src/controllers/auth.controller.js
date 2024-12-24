@@ -6,13 +6,16 @@ const login = async (req, res) => {
 
   try {
     const user = await authService.getUserByEmail(email);
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!user) {
+      return res.status(401).send({ message: "E-mail or password incorrect" });
+    }
 
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).send({ message: "E-mail or password incorrect" });
     }
 
-    res.send(user);
+    res.send("Logged in");
   } catch (err) {
     res.status(500).send(err.message);
   }
