@@ -15,7 +15,9 @@ const login = async (req, res) => {
       return res.status(401).send({ message: "E-mail or password incorrect" });
     }
 
-    res.send("Logged in");
+    const token = authService.generateToken(user.id);
+
+    res.send({ token });
   } catch (err) {
     res.status(500).send(err.message);
   }
