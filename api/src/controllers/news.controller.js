@@ -3,6 +3,13 @@ import newsService from "../services/news.service.js";
 const getAllPosts = async (req, res) => {
   try {
     const news = await newsService.getAll();
+
+    if (news.lenght === 0) {
+      res.status(400).send({
+        message: "There are no Posts created",
+      });
+    }
+
     res.status(200).send(news);
   } catch (err) {
     res.status(500).send({ message: err.message });
