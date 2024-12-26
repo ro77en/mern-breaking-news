@@ -30,7 +30,7 @@ const createPost = async (req, res) => {
       title,
       text,
       banner,
-      author: { _id: "6765817abda89c5b62efd1e8" },
+      author: req.userId,
     });
 
     res.status(201).send("Post created!");
