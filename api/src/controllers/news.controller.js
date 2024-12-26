@@ -23,7 +23,7 @@ const createPost = async (req, res) => {
       title,
       text,
       banner,
-      id: "fakeObjectId",
+      author: { _id: "6765817abda89c5b62efd1e8" },
     });
 
     res.status(201).send("Post created!");
