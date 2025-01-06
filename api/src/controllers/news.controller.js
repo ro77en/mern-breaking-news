@@ -1,8 +1,35 @@
 import newsService from "../services/news.service.js";
 
 const getAllPosts = async (req, res) => {
+  let { limit, offset } = req.query;
+
+  limit = Number(limit);
+  offset = Number(offset);
+
+  if (!limit) {
+    limit = 5;
+  }
+
+  if (!offset) {
+    offset = 0;
+  }
+
   try {
-    const news = await newsService.getAll();
+    const news = await newsService.getAll(offset, limit);
+    const total = await newsService.countNews();
+    const currentUrl = req.baseUrl;
+
+    const next = offset + limit;
+    const nextUrl =
+      next < total
+        ? `http://localhost:${currentUrl}?limit=${limit}&offset=${offset}`
+        : null;
+
+    const previous = offset - limit < 0 ? null : offset - limit;
+    const previousUrl =
+      previous != null
+        ? `http://localhost:${currentUrl}?limit=${limit}&offset=${previous}`
+        : null;
 
     if (news.lenght === 0) {
       res.status(400).send({
@@ -10,7 +37,25 @@ const getAllPosts = async (req, res) => {
       });
     }
 
-    res.status(200).send(news);
+    res.status(200).send({
+      nextUrl,
+      previousUrl,
+      limit,
+      offset,
+      total,
+
+      results: news.map((newsItem) => ({
+        id: newsItem._id,
+        title: newsItem.title,
+        text: newsItem.text,
+        banner: newsItem.banner,
+        likes: newsItem.likes,
+        comments: newsItem.comments,
+        authorName: newsItem.author.name,
+        author: newsItem.author.username,
+        avatar: newsItem.author.avatar,
+      })),
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
