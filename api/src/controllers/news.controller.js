@@ -132,10 +132,10 @@ const getPostById = async (req, res) => {
   }
 };
 
-const searchPostByTitle = async (req, res) => {
+const getPostByTitle = async (req, res) => {
   try {
     const { title } = req.query;
-    const postsFound = await newsService.searchByTitle(title);
+    const postsFound = await newsService.getByTitle(title);
 
     if (postsFound.lenght === 0) {
       return res.status(400).send({
@@ -161,10 +161,11 @@ const searchPostByTitle = async (req, res) => {
   }
 };
 
+
 export default {
   getAllPosts,
   createPost,
   getLatestNews,
   getPostById,
-  searchPostByTitle,
+  getPostByTitle
 };
