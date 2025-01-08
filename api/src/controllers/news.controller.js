@@ -125,8 +125,37 @@ const getPostById = async (req, res) => {
         authorName: post.author.name,
         author: post.author.username,
         avatar: post.author.avatar,
-      }
-    })
+      },
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+const searchPostByTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+    const postsFound = await newsService.searchByTitle(title);
+
+    if (postsFound.lenght === 0) {
+      return res.status(400).send({
+        message: "There are no Posts with the searched title",
+      });
+    }
+
+    return res.status(200).send({
+      results: postsFound.map((post) => ({
+        id: post._id,
+        title: post.title,
+        text: post.text,
+        banner: post.banner,
+        likes: post.likes,
+        comments: post.comments,
+        authorName: post.author.name,
+        author: post.author.username,
+        avatar: post.author.avatar,
+      })),
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -137,4 +166,5 @@ export default {
   createPost,
   getLatestNews,
   getPostById,
+  searchPostByTitle,
 };

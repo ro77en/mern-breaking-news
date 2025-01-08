@@ -11,10 +11,18 @@ const countNews = () => News.countDocuments();
 
 const latestNews = () => News.findOne().sort({ _id: -1 }).populate("author");
 
+const searchByTitle = (title) =>
+  News.find({
+    title: { $regex: `${title || ""}`, $options: "i" },
+  })
+    .sort({ _id: -1 })
+    .populate("author");
+
 export default {
   create,
   getAll,
   getById,
   countNews,
   latestNews,
+  searchByTitle,
 };

@@ -8,8 +8,10 @@ router.get("/", authMiddleware, newsController.getAllPosts);
 
 router.get('/latest', newsController.getLatestNews);
 
-router.get('/:id', newsController.getPostById);
+router.get('/search', newsController.searchPostByTitle);
 
 router.post("/", authMiddleware, newsController.createPost);
+
+router.get('/:id', newsController.getPostById);
 
 export default router;
