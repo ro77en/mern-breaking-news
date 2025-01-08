@@ -87,11 +87,11 @@ const createPost = async (req, res) => {
 const getLatestNews = async (req, res) => {
   try {
     const latestPost = await newsService.latestNews();
-  
+
     if (!latestPost) {
       res.status(400).send("There are no posts found.");
     }
-  
+
     res.send({
       latestPost: {
         id: latestPost._id,
@@ -108,11 +108,33 @@ const getLatestNews = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
+};
 
+const getPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await newsService.getById(id);
+    res.status(200).send({
+      post: {
+        id: post._id,
+        title: post.title,
+        text: post.text,
+        banner: post.banner,
+        likes: post.likes,
+        comments: post.comments,
+        authorName: post.author.name,
+        author: post.author.username,
+        avatar: post.author.avatar,
+      }
+    })
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };
 
 export default {
   getAllPosts,
   createPost,
   getLatestNews,
+  getPostById,
 };
