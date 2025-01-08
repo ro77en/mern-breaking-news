@@ -161,11 +161,35 @@ const getPostByTitle = async (req, res) => {
   }
 };
 
+const getPostByUser = async (req, res) => {
+  try {
+    const id = req.userId;
+    const postsFound = await newsService.getByUser(id);
+
+    return res.status(200).send({
+      results: postsFound.map((post) => ({
+        id: post._id,
+        title: post.title,
+        text: post.text,
+        banner: post.banner,
+        likes: post.likes,
+        comments: post.comments,
+        authorName: post.author.name,
+        author: post.author.username,
+        avatar: post.author.avatar,
+      })),
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+}
+
 
 export default {
   getAllPosts,
   createPost,
   getLatestNews,
   getPostById,
-  getPostByTitle
+  getPostByTitle,
+  getPostByUser
 };

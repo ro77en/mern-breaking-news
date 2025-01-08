@@ -18,6 +18,13 @@ const getByTitle = (title) =>
     .sort({ _id: -1 })
     .populate("author");
 
+const getByUser = (userId) =>
+  News.find({
+    author: userId,
+  })
+    .sort({ _id: -1 })
+    .populate("author");
+
 export default {
   create,
   getAll,
@@ -25,4 +32,5 @@ export default {
   countNews,
   latestNews,
   getByTitle,
+  getByUser,
 };
