@@ -7,8 +7,11 @@ const getAll = (offset, limit) =>
 
 const countNews = () => News.countDocuments();
 
+const latestNews = () => News.findOne().sort({ _id: -1 }).populate("author");
+
 export default {
   create,
   getAll,
   countNews,
+  latestNews,
 };

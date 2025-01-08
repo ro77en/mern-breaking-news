@@ -84,7 +84,35 @@ const createPost = async (req, res) => {
   }
 };
 
+const getLatestNews = async (req, res) => {
+  try {
+    const latestPost = await newsService.latestNews();
+  
+    if (!latestPost) {
+      res.status(400).send("There are no posts found.");
+    }
+  
+    res.send({
+      latestPost: {
+        id: latestPost._id,
+        title: latestPost.title,
+        text: latestPost.text,
+        banner: latestPost.banner,
+        likes: latestPost.likes,
+        comments: latestPost.comments,
+        authorName: latestPost.author.name,
+        author: latestPost.author.username,
+        avatar: latestPost.author.avatar,
+      },
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+
+};
+
 export default {
   getAllPosts,
   createPost,
+  getLatestNews,
 };

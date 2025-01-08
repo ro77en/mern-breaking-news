@@ -6,6 +6,8 @@ const router = Router();
 
 router.get("/", authMiddleware, newsController.getAllPosts);
 
+router.get('/latest', newsController.getLatestNews);
+
 router.post("/", authMiddleware, newsController.createPost);
 
 export default router;
