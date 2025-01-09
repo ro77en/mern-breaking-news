@@ -38,7 +38,6 @@ export const authMiddleware = (req, res, next) => {
         });
       }
 
-      console.log(decoded);
       const user = await userService.getById(decoded.id);
 
       if (!user || !user.id) {
