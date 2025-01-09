@@ -195,14 +195,6 @@ const updatePostById = async (req, res) => {
         .send({ message: "Submit all fields to update the post" });
     }
 
-    const post = await newsService.getById(id);
-
-    if (post.author._id != req.userId) {
-      return res
-        .status(403)
-        .send({ message: "You can not update other people's posts" });
-    }
-
     await newsService.updateById(id, title, text, banner);
     return res.status(200).send({ message: "Post updated successfully!" });
   } catch (err) {
