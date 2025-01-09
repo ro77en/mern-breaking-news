@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "API_BREAKINGNEWS",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

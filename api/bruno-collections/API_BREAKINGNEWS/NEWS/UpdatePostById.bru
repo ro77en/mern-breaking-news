@@ -1,0 +1,23 @@
+meta {
+  name: UpdatePostById
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/news/677fe1c5c435a66f7ea11fd3
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmRiNDQwOGFkY2RkNDAxMDY4ODBkYyIsImlhdCI6MTczNjQzNDA5NSwiZXhwIjoxNzM2NTIwNDk1fQ.P-rPB4b03-j8we586_JY4Hg2QGB6N4NXWCX2zWhjTx4
+}
+
+body:json {
+  {
+    "title": "title updated!",
+    "banner": "img/test.jpg",
+    "text": "testing post update"
+  }
+}

@@ -1,0 +1,22 @@
+meta {
+  name: CREATE
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/user/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "LukinhaTest",
+    "username": "lukinha.test",
+    "email": "lukinha@666.com",
+    "password": "te5t!",
+    "avatar": "https://avatars.githubusercontent.com/u/130024434?v=4",
+    "background": "https://i.imgur.com/GVIHcvz.jpeg"
+  }
+}

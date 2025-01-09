@@ -1,0 +1,19 @@
+meta {
+  name: GetPostByTitle
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/news/search?title=sample
+  body: none
+  auth: none
+}
+
+params:query {
+  title: sample
+}
+
+headers {
+  ~Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmRiNDQwOGFkY2RkNDAxMDY4ODBkYyIsImlhdCI6MTczNjMzOTUwNiwiZXhwIjoxNzM2NDI1OTA2fQ.VoznrR9ZA_RGFPZWv164ua1ti9_iSCN2mNkyzZmiX5Y
+}

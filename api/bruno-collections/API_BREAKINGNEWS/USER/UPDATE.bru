@@ -1,0 +1,17 @@
+meta {
+  name: UPDATE
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/user/6765ab7c73d66ae7ecd842b2
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "pitikinha"
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: GetAllPosts
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/news
+  body: none
+  auth: none
+}
+
+params:query {
+  ~limit: 10
+  ~offset: 0
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmRiNDQwOGFkY2RkNDAxMDY4ODBkYyIsImlhdCI6MTczNjQzNDA5NSwiZXhwIjoxNzM2NTIwNDk1fQ.P-rPB4b03-j8we586_JY4Hg2QGB6N4NXWCX2zWhjTx4
+}
