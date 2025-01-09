@@ -25,6 +25,13 @@ const getByUser = (userId) =>
     .sort({ _id: -1 })
     .populate("author");
 
+const updateById = (id, title, text, banner) =>
+  News.findOneAndUpdate(
+    { _id: id },
+    { title: title, text: text, banner: banner },
+    { rawResult: true }
+  );
+
 export default {
   create,
   getAll,
@@ -33,4 +40,5 @@ export default {
   latestNews,
   getByTitle,
   getByUser,
+  updateById,
 };

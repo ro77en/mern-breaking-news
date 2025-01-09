@@ -182,8 +182,33 @@ const getPostByUser = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-}
+};
 
+const updatePostById = async (req, res) => {
+  try {
+    const { title, text, banner } = req.body;
+    const { id } = req.params;
+
+    if (!title && !banner && !text) {
+      return res
+        .status(400)
+        .send({ message: "Submit all fields to update the post" });
+    }
+
+    const post = await newsService.getById(id);
+
+    if (post.author._id != req.userId) {
+      return res
+        .status(403)
+        .send({ message: "You can not update other people's posts" });
+    }
+
+    await newsService.updateById(id, title, text, banner);
+    return res.status(200).send({ message: "Post updated successfully!" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
 export default {
   getAllPosts,
@@ -191,5 +216,6 @@ export default {
   getLatestNews,
   getPostById,
   getPostByTitle,
-  getPostByUser
+  getPostByUser,
+  updatePostById,
 };
