@@ -202,6 +202,16 @@ const updatePostById = async (req, res) => {
   }
 };
 
+const deletePostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await newsService.deleteById(id);
+    return res.status(200).send({ message: "Post successfully deleted" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 export default {
   getAllPosts,
   createPost,
@@ -210,4 +220,5 @@ export default {
   getPostByTitle,
   getPostByUser,
   updatePostById,
+  deletePostById,
 };

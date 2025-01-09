@@ -16,6 +16,12 @@ router.patch(
   userIsAuthor,
   newsController.updatePostById
 );
+router.delete(
+  "/:id",
+  authMiddleware,
+  userIsAuthor,
+  newsController.deletePostById
+);
 router.get("/:id", newsController.getPostById);
 
 export default router;

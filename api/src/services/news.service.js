@@ -32,6 +32,8 @@ const updateById = (id, title, text, banner) =>
     { rawResult: true }
   );
 
+const deleteById = (id) => News.findOneAndDelete({ _id: id });
+
 export default {
   create,
   getAll,
@@ -41,4 +43,5 @@ export default {
   getByTitle,
   getByUser,
   updateById,
+  deleteById,
 };
