@@ -212,6 +212,24 @@ const deletePostById = async (req, res) => {
   }
 };
 
+const likePostById = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const userId = req.userId;
+
+    const postLiked = await newsService.likePost(postId, userId);
+
+    if (!postLiked) {
+      await newsService.deleteLike(postId, userId);
+      return res.status(200).send({ message: "Like removed." });
+    }
+
+    res.status(200).send({ message: "Post liked!" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 export default {
   getAllPosts,
   createPost,
@@ -221,4 +239,5 @@ export default {
   getPostByUser,
   updatePostById,
   deletePostById,
+  likePostById,
 };

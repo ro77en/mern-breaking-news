@@ -34,6 +34,30 @@ const updateById = (id, title, text, banner) =>
 
 const deleteById = (id) => News.findOneAndDelete({ _id: id });
 
+const likePost = (newsId, userId) =>
+  News.findOneAndUpdate(
+    {
+      _id: newsId,
+      "likes.userId": { $nin: [userId] },
+    },
+    {
+      $push: {
+        likes: {
+          userId,
+          likedAt: new Date(),
+        },
+      },
+    }
+  );
+
+const deleteLike = (newsId, userId) =>
+  News.findOneAndUpdate(
+    {
+      _id: newsId,
+    },
+    { $pull: { likes: { userId } } }
+  );
+
 export default {
   create,
   getAll,
@@ -44,4 +68,6 @@ export default {
   getByUser,
   updateById,
   deleteById,
+  likePost,
+  deleteLike,
 };

@@ -23,5 +23,6 @@ router.delete(
   newsController.deletePostById
 );
 router.get("/:id", newsController.getPostById);
+router.patch("/like/:postId", authMiddleware, newsController.likePostById);
 
 export default router;
