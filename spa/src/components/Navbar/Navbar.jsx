@@ -1,19 +1,19 @@
 import logo from "../../images/logo.png";
-import "./Navbar.css";
+import { Button, ImgLogo, InputWrapper, Nav } from "./NavbarStyled";
 
 export function Navbar() {
   return (
     <>
-      <nav>
-        <div className="input-search-wrapper">
+      <Nav>
+        <InputWrapper className="input-search-wrapper">
           <i className="bi bi-search"></i>
           <input type="text" placeholder="Pesquise por um título" />
-        </div>
+        </InputWrapper>
 
-        <img src={logo} alt="Logo Breaking News" />
+        <ImgLogo src={logo} alt="Logo Breaking News" />
 
-        <button>Entrar</button>
-      </nav>
+        <Button>Entrar</Button>
+      </Nav>
     </>
   );
 }
