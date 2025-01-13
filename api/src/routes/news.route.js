@@ -5,7 +5,7 @@ import { userIsAuthor } from "../middlewares/global.middlewares.js";
 
 const router = Router();
 
-router.get("/", authMiddleware, newsController.getAllPosts);
+router.get("/", newsController.getAllPosts);
 router.get("/latest", newsController.getLatestNews);
 router.get("/search", newsController.getPostByTitle);
 router.get("/by-user", authMiddleware, newsController.getPostByUser);
