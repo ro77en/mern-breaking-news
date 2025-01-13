@@ -24,5 +24,10 @@ router.delete(
 );
 router.get("/:id", newsController.getPostById);
 router.patch("/like/:postId", authMiddleware, newsController.likePostById);
+router.patch(
+  "/comment/:postId",
+  authMiddleware,
+  newsController.addCommentByPostId
+);
 
 export default router;

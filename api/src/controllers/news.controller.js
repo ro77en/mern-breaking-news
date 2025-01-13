@@ -230,6 +230,24 @@ const likePostById = async (req, res) => {
   }
 };
 
+const addCommentByPostId = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const userId = req.userId;
+    const comment = req.body;
+
+    if (!comment) {
+      return res
+        .status(400)
+        .send({ message: "You can not add empty comments" });
+    }
+    await newsService.addComment(postId, userId, comment);
+    res.status(200).send("Comment added!");
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 export default {
   getAllPosts,
   createPost,
@@ -240,4 +258,5 @@ export default {
   updatePostById,
   deletePostById,
   likePostById,
+  addCommentByPostId,
 };

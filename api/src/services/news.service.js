@@ -58,6 +58,18 @@ const deleteLike = (newsId, userId) =>
     { $pull: { likes: { userId } } }
   );
 
+const addComment = (postId, userId, comment) => {
+  const commentId = Math.floor(Date.now() * Math.random()).toString(36);
+
+  return News.findOneAndUpdate(
+    { _id: postId },
+    {
+      $push: {
+        comments: { commentId, userId, comment, createdAt: new Date() },
+      },
+    }
+  );
+};
 export default {
   create,
   getAll,
@@ -70,4 +82,5 @@ export default {
   deleteById,
   likePost,
   deleteLike,
+  addComment,
 };
