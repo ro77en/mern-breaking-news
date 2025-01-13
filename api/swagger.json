@@ -10,6 +10,10 @@
   },
   "servers": [
     {
+      "url": "https://api-breaking-news-yl38.onrender.com/",
+      "description": "Render Server"
+    },
+    {
       "url": "http://localhost:8080",
       "description": "Local Server"
     }
