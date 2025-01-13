@@ -248,6 +248,37 @@ const addCommentByPostId = async (req, res) => {
   }
 };
 
+const removeCommentById = async (req, res) => {
+  try {
+    const { postId, commentId } = req.params;
+    const userId = req.userId;
+
+    const removedComment = await newsService.removeComment(
+      postId,
+      commentId,
+      userId
+    );
+
+    const commentFinder = removedComment.comments.find(
+      (comment) => comment.commentId === commentId
+    );
+
+    if (!commentFinder) {
+      return res.status(404).send({ message: "Comment not found" });
+    }
+
+    if (commentFinder.userId !== userId) {
+      return res
+        .status(403)
+        .send({ message: "You can only delete comments you've made" });
+    }
+
+    res.status(200).send("Comment removed.");
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 export default {
   getAllPosts,
   createPost,
@@ -259,4 +290,5 @@ export default {
   deletePostById,
   likePostById,
   addCommentByPostId,
+  removeCommentById,
 };

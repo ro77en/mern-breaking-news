@@ -70,6 +70,13 @@ const addComment = (postId, userId, comment) => {
     }
   );
 };
+
+const removeComment = (postId, commentId, userId) =>
+  News.findOneAndUpdate(
+    { _id: postId },
+    { $pull: { comments: { commentId, userId } } }
+  );
+
 export default {
   create,
   getAll,
@@ -83,4 +90,5 @@ export default {
   likePost,
   deleteLike,
   addComment,
+  removeComment,
 };

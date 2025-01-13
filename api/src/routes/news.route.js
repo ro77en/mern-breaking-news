@@ -29,5 +29,10 @@ router.patch(
   authMiddleware,
   newsController.addCommentByPostId
 );
+router.patch(
+  "/comment/:postId/:commentId",
+  authMiddleware,
+  newsController.removeCommentById
+);
 
 export default router;
