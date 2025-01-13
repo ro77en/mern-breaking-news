@@ -1,18 +1,13 @@
 meta {
-  name: GetAllPosts
+  name: LikePostById
   type: http
-  seq: 2
+  seq: 9
 }
 
-get {
-  url: {{baseUrl}}/news
+patch {
+  url: {{baseUrl}}/news//like/67852931253de34166b52195
   body: none
   auth: none
-}
-
-params:query {
-  ~limit: 10
-  ~offset: 0
 }
 
 headers {
