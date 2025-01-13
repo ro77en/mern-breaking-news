@@ -234,7 +234,7 @@ const addCommentByPostId = async (req, res) => {
   try {
     const { postId } = req.params;
     const userId = req.userId;
-    const comment = req.body;
+    const { comment } = req.body;
 
     if (!comment) {
       return res
