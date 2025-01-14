@@ -13,17 +13,25 @@ export const CardContainer = styled.section`
 `;
 
 export const CardContent = styled.article`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+
+    grid-column: span 2;
+  }
 
   & h2 {
     margin-bottom: 1rem;
   }
 
   & img {
-    width: 30%;
+    width: 100%;
     object-fit: cover;
     object-position: center;
   }
@@ -37,4 +45,4 @@ export const CardInteractions = styled.article`
   & i {
     margin-right: 0.3rem;
   }
-`
+`;
