@@ -31,12 +31,6 @@ const getAllPosts = async (req, res) => {
         ? `http://localhost:${currentUrl}?limit=${limit}&offset=${previous}`
         : null;
 
-    if (news.lenght === 0) {
-      res.status(400).send({
-        message: "There are no Posts created",
-      });
-    }
-
     res.status(200).send({
       nextUrl,
       previousUrl,
