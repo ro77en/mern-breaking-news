@@ -17,7 +17,7 @@ export const CardContent = styled.article`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 
-  div {
+  & div {
     display: flex;
     flex-direction: column;
     align-items: start;
