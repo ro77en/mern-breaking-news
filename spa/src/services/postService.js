@@ -7,6 +7,12 @@ const getAll = (offset) => {
   return response;
 };
 
+const getLatest = () => {
+  const response = axios.get(`${apiUrl}/news/latest`);
+  return response;
+};
+
 export default {
   getAll,
+  getLatest,
 };
