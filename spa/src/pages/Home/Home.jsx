@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
-  async function getAllPosts() {
-    const res = await postService.getAll();
-    setPosts(res.data.results);
+  async function getPosts(offset = 0) {
+    const postsRes = await postService.getAll(offset);
+    setPosts(postsRes.data.results);
   }
 
   useEffect(() => {
-    getAllPosts();
+    getPosts(1);
   }, []);
 
   return (
