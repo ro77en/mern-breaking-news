@@ -26,6 +26,7 @@ export default function Home() {
       <Navbar />
       <HomeHero>
         <Card
+          hero="true"
           title={latestPost.title}
           text={latestPost.text}
           banner={latestPost.banner}

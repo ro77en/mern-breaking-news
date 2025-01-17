@@ -1,4 +1,5 @@
-export function TextLimit({ text, limit }) {
+export function TextLimit({ hero, text, limit }) {
+  if (hero) limit = 400;
   const limitedText =
     text?.length > limit ? `${text.substring(0, limit)}...` : text;
 
