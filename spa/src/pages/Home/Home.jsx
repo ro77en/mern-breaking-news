@@ -23,7 +23,6 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
       <HomeHero>
         <Card
           hero="true"
