@@ -1,5 +1,4 @@
 import { Card } from "../../components/Card/Card";
-import { Navbar } from "../../components/Navbar/Navbar";
 import { HomeBody, HomeHero } from "./HomeStyled";
 
 import postService from "../../services/postService";
@@ -9,8 +8,8 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [latestPost, setLatestPost] = useState({});
 
-  async function getPosts(offset = 0) {
-    const postsRes = await postService.getAll(offset);
+  async function getPosts(offset=1, limit=4) {
+    const postsRes = await postService.getAll(offset, limit);
     setPosts(postsRes.data.results);
 
     const latestPost = await postService.getLatest();
@@ -18,7 +17,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getPosts(1);
+    getPosts();
   }, []);
 
   return (
