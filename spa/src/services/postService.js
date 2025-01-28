@@ -12,7 +12,13 @@ const getLatest = () => {
   return response;
 };
 
+const searchByTitle = (title) => {
+  const response = axios.get(`${apiUrl}/news/search?title=${title}`);
+  return response;
+}
+
 export default {
   getAll,
   getLatest,
+  searchByTitle
 };
