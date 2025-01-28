@@ -12,5 +12,5 @@ export const HomeBody = styled.section`
 export const HomeHero = styled.section`
   width: 80%;
   display: flex;
-  margin: 9rem auto 1rem auto;
+  margin: 1rem auto;
 `;
