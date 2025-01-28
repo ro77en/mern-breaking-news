@@ -19,11 +19,11 @@ export function Card(props) {
           <CardInteractions>
             <section>
               <i className="bi bi-hand-thumbs-up"></i>
-              <span>{props.likes?.length}</span>
+              <span>{props.likes ? props.likes.length : 0}</span>
             </section>
             <section>
               <i className="bi bi-chat-dots"></i>
-              <span>{props.comments?.length}</span>
+              <span>{props.comments ? props.comments.length : 0}</span>
             </section>
           </CardInteractions>
         </div>

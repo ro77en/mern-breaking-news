@@ -41,8 +41,8 @@ export default function Home() {
               title={post.title}
               text={post.text}
               banner={post.banner}
-              likes={post.likes.length}
-              comments={post.comments.length}
+              likes={post.likes}
+              comments={post.comments}
             />
           );
         })}
