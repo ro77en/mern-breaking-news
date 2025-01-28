@@ -2,8 +2,8 @@ import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const getAll = (offset) => {
-  const response = axios.get(`${apiUrl}/news?offset=${offset}`);
+const getAll = (offset, limit) => {
+  const response = axios.get(`${apiUrl}/news?offset=${offset}&limit=${limit}`);
   return response;
 };
 
