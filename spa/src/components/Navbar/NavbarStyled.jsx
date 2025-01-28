@@ -6,7 +6,7 @@ export const Nav = styled.nav`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  position: fixed;
+  position: sticky;
   top: 0;
   background-color: white;
   z-index: 1;
@@ -26,7 +26,8 @@ export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  & i {
+  & button {
+    cursor: pointer;
     position: absolute;
     top: 1;
     right: 0.1rem;
@@ -36,6 +37,12 @@ export const InputWrapper = styled.div`
     color: #757575;
     border-radius: 0.5rem;
     padding: 0.5rem;
+  }
+
+  & button:hover {
+    transition: .3s;
+    color: #f5f5f5;
+    background-color: #757575;
   }
 
   & input {
@@ -72,3 +79,13 @@ export const Button = styled.button`
     background-color: #0a86af;
   }
 `;
+
+export const ErrorSpan = styled.span`
+  background-color: #ffaeae;
+  color: #9e0000;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+`
