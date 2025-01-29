@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import { Navbar } from "./components/Navbar/Navbar.jsx";
 import { Search } from "./pages/Search/Search.jsx";
 import { GlobalStyle } from "./GlobalStyle.jsx";
+import { Auth } from "./pages/Auth/Auth.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/auth',
+    element: <Auth />
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
